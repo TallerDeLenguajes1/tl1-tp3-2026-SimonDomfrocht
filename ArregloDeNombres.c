@@ -12,6 +12,15 @@ void mostrarPersonas(char *V[],int cantidad){
     
 }
 
+char* BuscarNombre(char *V[], int cantidad, char *palabra){
+    for (int i = 0; i < cantidad; i++) {
+        if (strstr(V[i], palabra) != NULL) {
+            return V[i];  
+        }
+    }
+    return NULL;  
+}
+
 int main(){
 
     char buff[50];
