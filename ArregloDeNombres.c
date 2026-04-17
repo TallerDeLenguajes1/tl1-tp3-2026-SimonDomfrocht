@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX 5
 
 void mostrarPersonas(char *V[],int cantidad){
     for (int i = 0; i < cantidad; i++)
@@ -22,8 +21,8 @@ int BuscaNombrePorPalabra(char *V[], int cantidad, char *palabra){
     return -1;  
 }
 
-void BuscaNombrePorId(char *V[], int id){
-    if (id >= 0 && id < MAX) {
+void BuscaNombrePorId(char *V[], int id,int cantidad){
+    if (id >= 0 && id < cantidad) {
         printf("\nNombre con indice %d: %s", id, V[id]);
     } else {
         printf("\nNo se encontro el valor buscado");
@@ -34,14 +33,17 @@ void BuscaNombrePorId(char *V[], int id){
 int main(){
 
     char buff[50];
-    char *V[MAX];
-    
+    int cantidad;
     int id;
     int resultado;
     int opcion;
-    
 
-    for (int i = 0; i < MAX; i++)
+    printf("Ingrese la cantidad de nombres que va a cargar: ");
+    scanf("%d", &cantidad);
+
+    char **V = (char **) malloc(cantidad * sizeof(char *));
+    
+    for (int i = 0; i < cantidad; i++)
     {
         printf("\nIngrese el nombre de la persona: ");
         scanf("%s",buff);
@@ -50,7 +52,7 @@ int main(){
         
     }
     
-    mostrarPersonas(V,MAX);
+    mostrarPersonas(V,cantidad);
 
     printf("\n\n--- MENU ---\n");
     printf("1. Buscar por ID\n");
@@ -61,11 +63,11 @@ int main(){
     if (opcion == 1) {
         printf("Ingrese el ID: ");
         scanf("%d", &id);
-        BuscaNombrePorId(V, id);
+        BuscaNombrePorId(V, id,cantidad);
     }else if (opcion == 2) {
         printf("Ingrese la palabra clave: ");
         scanf("%s", buff);
-        resultado = BuscaNombrePorPalabra(V, MAX, buff);
+        resultado = BuscaNombrePorPalabra(V, cantidad, buff);
         if (resultado != -1) {
             printf("\nNombre encontrado en la posicion %d: %s", resultado,V[resultado]);
         } else {
@@ -76,7 +78,7 @@ int main(){
     }
 
 
-    for (int i = 0; i < MAX; i++)
+    for (int i = 0; i < cantidad; i++)
     {
         free(V[i]);
     }
