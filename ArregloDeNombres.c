@@ -12,6 +12,7 @@ void mostrarPersonas(char *V[],int cantidad){
     
 }
 
+<<<<<<< HEAD
 int BuscarNombre(char *V[], int cantidad, char *palabra){
     for (int i = 0; i < cantidad; i++) {
         if (strstr(V[i], palabra) != NULL) {
@@ -19,6 +20,14 @@ int BuscarNombre(char *V[], int cantidad, char *palabra){
         }
     }
     return -1;  
+=======
+void BuscarNombre(char *V[], int id){
+    if (id >= 0 && id < 5) {
+        printf("\nNombre con indice %d: %s", id, V[id]);
+    } else {
+        printf("\nNo se encontro el valor buscado");
+    }
+>>>>>>> busca-nombre
 }
 
 int main(){
